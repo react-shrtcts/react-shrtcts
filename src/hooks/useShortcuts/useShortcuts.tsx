@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { ShortcutContext } from '../../context'
 import { IShortcutContext, ShortcutFunction, ShortcutConfig } from "../../types"
 import { keyCharToCode } from '../../utils/map'
+import { logger } from '../../utils/logger'
 //@ts-ignore
 import chalk from 'chalk'
 
@@ -12,9 +13,9 @@ export const useShortcuts = (config: ShortcutConfig[]) => {
     // process config
     useEffect(() => {
         config.forEach(({ keys, fn }) => {
-            console.log(chalk.blue('Started Config Parse!'))
-            console.log(chalk.yellow('Recieved Keys:'))
-            console.log(chalk.yellow(keys))
+            logger(chalk.blue('Started Config Parse!'))
+            logger(chalk.yellow('Recieved Keys:'))
+            logger(chalk.yellow(keys))
             // get keycode
             const keycodes = keys.map(getKeycode)
             //  construct state
@@ -22,14 +23,14 @@ export const useShortcuts = (config: ShortcutConfig[]) => {
             // assign event
             keycodes.forEach(() => window.addEventListener('keydown', keyListener(true)))
             keycodes.forEach(() => window.addEventListener('keyup', keyListener(false)))
-            console.log(chalk.green('Applied Event Listeners to keys!'))
+            logger(chalk.green('Applied Event Listeners to keys!'))
         })
     }, [])
 
     useEffect(() => {
-        console.log(chalk.yellow('keyState change: '))
+        logger(chalk.yellow('keyState change: '))
         keyState.forEach((keys) => !Object.values(keys).some(value => {
-            console.log(chalk.green(`inside Object.values ${value}`))    
+            logger(chalk.green(`inside Object.values ${value}`))    
             return value === false
         }) ? keys.keysFn() : null)
     }, [keyState])
