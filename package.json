@@ -7,13 +7,23 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@testing-library/react": "^10.4.3",
+    "@testing-library/react-hooks": "^3.3.0",
+    "@types/jest": "^26.0.3",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
+    "chalk": "^4.1.0",
     "jest": "^26.1.0",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9.6"
   },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
   }
 }
