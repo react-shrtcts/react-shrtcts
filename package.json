@@ -1,0 +1,19 @@
+{
+  "name": "react-shrtcts",
+  "version": "1.0.0",
+  "description": "Simple keyboard shortcuts for react",
+  "main": "lib/index.js",
+  "author": "Morgan Parry, Conor Sinclair",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "jest": "^26.1.0",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
