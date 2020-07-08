@@ -1,6 +1,6 @@
 {
   "name": "react-shrtcts",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "Simple keyboard shortcuts for react",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,10 +21,24 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "demo": "react-scripts start"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

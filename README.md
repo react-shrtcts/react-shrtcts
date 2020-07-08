@@ -78,6 +78,8 @@ useShortcuts({
 
 ```
 
+Check the `demo` directory for a working example.
+
 <!-- ROADMAP -->
 ## Roadmap
 

@@ -9,13 +9,17 @@ import chalk from 'chalk'
 export const useShortcuts = (config: ShortcutConfig[]) => {
     const [keyState, setKeyState] = useContext<[IShortcutContext[], React.Dispatch<React.SetStateAction<IShortcutContext[]>>]>(ShortcutContext)
 
-    const keyListener = (bool: boolean) =>({ code, preventDefault }: KeyboardEvent) => {
-        preventDefault()
+    const keyListener = (bool: boolean) =>(event: KeyboardEvent) => {
+        const { code } = event
+        event.preventDefault()
         setKeyState(state => state.map((keys) => Object.keys(keys).some(key => key === String(code)) ? {...keys, [code] : bool } : keys))
     }
-    
+
     // process config
     useEffect(() => {
+        const keydownListener = keyListener(true)
+        const keyupListener = keyListener(false)
+
         config.forEach(({ keys, fn }) => {
             logger(chalk.blue('Started Config Parse!'))
             logger(chalk.yellow('Recieved Keys:'))
@@ -25,24 +29,49 @@ export const useShortcuts = (config: ShortcutConfig[]) => {
             //  construct state
             setKeyState(constructor({ keycodes, fn}))
             // assign event
-            keycodes.forEach(() => window.addEventListener('keydown', keyListener(true)))
-            keycodes.forEach(() => window.addEventListener('keyup', keyListener(false)))
+            keycodes.forEach(() => window.addEventListener('keydown', keydownListener))
+            keycodes.forEach(() => window.addEventListener('keyup', keyupListener))
             logger(chalk.green('Applied Event Listeners to keys!'))
         })
+        return () => {
+            config.forEach(({ keys, fn }) => {
+                logger(chalk.blue('Removing event listeners'))
+                // get keycode
+                const keycodes = keys.map(getKeycode)
+                // remove from state
+                setKeyState([])
+
+                // assign event
+                keycodes.forEach(() => window.removeEventListener('keydown', keydownListener))
+                keycodes.forEach(() => window.removeEventListener('keyup', keyupListener))
+                logger(chalk.green('Applied Event Listeners to keys!'))
+            })  
+        }
     }, [])
 
     useEffect(() => {
         logger(chalk.yellow('keyState change: '))
-        keyState.forEach((keys) => !Object.values(keys).some(value => {
-            logger(chalk.green(`inside Object.values ${value}`))    
-            return value === false
-        }) ? keys.keysFn() : null)
+        keyState.forEach((keys) => {
+            const run = !Object.values(keys).some(value => {
+                logger(chalk.green(`inside Object.values ${value}`))    
+                return value === false
+            })
+            if (run) {
+                keys.keysFn()
+                setKeyState(state => state.map(reducer))
+            }
+        })
     }, [keyState])
     
     return {
         keyState
     }
 }
+
+export const reducer = (obj: IShortcutContext) => Object.entries(obj).reduce((acc, [key, value]) => ({ 
+    ...acc,
+    [key]: typeof value === 'boolean' ? false : value
+}), {} as IShortcutContext)
 
 export const constructor = ({keycodes, fn}: {keycodes: string[], fn: ShortcutFunction }) => 
 (state: IShortcutContext[]) => ([...state, { [keycodes[0]]: false, [keycodes[1]]: false, keysFn: fn}]) as IShortcutContext[]
