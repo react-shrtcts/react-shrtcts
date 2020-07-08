@@ -9,7 +9,11 @@ import chalk from 'chalk'
 export const useShortcuts = (config: ShortcutConfig[]) => {
     const [keyState, setKeyState] = useContext<[IShortcutContext[], React.Dispatch<React.SetStateAction<IShortcutContext[]>>]>(ShortcutContext)
 
-    const keyListener = (bool: boolean) =>({ code }: KeyboardEvent) => setKeyState(state => state.map((keys) => Object.keys(keys).some(key => key === String(code)) ? {...keys, [code] : bool } : keys))
+    const keyListener = (bool: boolean) =>({ code, preventDefault }: KeyboardEvent) => {
+        preventDefault()
+        setKeyState(state => state.map((keys) => Object.keys(keys).some(key => key === String(code)) ? {...keys, [code] : bool } : keys))
+    }
+    
     // process config
     useEffect(() => {
         config.forEach(({ keys, fn }) => {
