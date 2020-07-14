@@ -6,11 +6,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-shrtcts": "^1.0.3"
+    "react-shrtcts": "^1.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"

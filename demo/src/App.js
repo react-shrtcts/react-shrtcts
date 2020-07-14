@@ -1,24 +1,23 @@
 import React from 'react';
 import './App.css';
-import { useShortcuts } from 'react-shrtcts'
+import { KeyMap } from 'react-shrtcts'
 
 function App() {
-  useShortcuts([{
+  const shortcutConfig = [{
     keys:['alt', 'j'],
-    fn: () => alert('Keys Pressed')
+    fn: () => alert('Alt J Pressed')
   },
   {
-    keys:['ctrl', 'j'],
-    fn: () => alert('Keys Pressed')
-  }])
+    keys:['alt', 'w'],
+    fn: () => alert('Alt W Pressed')
+  }]
   return (
     <div className="App">
       <header className="App-header">
         <p>
           Test out some shrtcts here bro!
         </p>      
-        
-        
+        <KeyMap keyMapConfig={shortcutConfig} />
       </header>
     </div>
   );

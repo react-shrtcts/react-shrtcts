@@ -1,5 +1,5 @@
 import { IShortcutContext, ShortcutFunction, ShortcutConfig } from "../../types";
-export declare const useShortcuts: (config: ShortcutConfig[]) => {
+export declare const useShortcuts: (config?: ShortcutConfig[] | undefined) => {
     keyState: IShortcutContext[];
 };
 export declare const reducer: (obj: IShortcutContext) => IShortcutContext;
