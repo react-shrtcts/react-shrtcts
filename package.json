@@ -1,6 +1,6 @@
 {
   "name": "react-shrtcts",
-  "version": "1.0.3",
+  "version": "0.0.0-development",
   "description": "Simple keyboard shortcuts for react",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,9 +21,11 @@
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.1",
     "chalk": "^4.1.0",
+    "eslint-plugin-react": "^7.20.3",
     "jest": "^26.1.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "react-test-renderer": "^16.13.1",
+    "semantic-release": "^17.1.1",
     "ts-jest": "^26.1.1",
     "typescript": "^3.9.6"
   },
@@ -35,10 +37,12 @@
   },
   "scripts": {
     "test": "jest --env=jest-environment-jsdom-sixteen",
-    "build": "tsc",
+    "compile": "tsc",
     "demo": "react-scripts start",
+    "lint": "eslint --fix",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "semantic-release": "semantic-release"
   },
   "browserslist": {
     "production": [
@@ -51,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-shrtcts/react-shrtcts.git"
   }
 }

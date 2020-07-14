@@ -35,4 +35,4 @@ jobs:
 
     # NPM Publish - Deliver
     - name: NPM Publish
-      uses: JS-DevTools/npm-publish@v1
+      uses: npx semantic-release

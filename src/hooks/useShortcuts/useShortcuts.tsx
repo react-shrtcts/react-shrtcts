@@ -22,7 +22,7 @@ export const useShortcuts = (config?: ShortcutConfig[]) => {
 
         config && config.forEach(({ keys, fn }) => {
             logger(chalk.blue('Started Config Parse!'))
-            logger(chalk.yellow('Recieved Keys:'))
+            logger(chalk.yellow('Received Keys:'))
             logger(chalk.yellow(keys))
             // get keycode
             const keycodes = keys.map(getKeycode)

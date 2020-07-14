@@ -14,10 +14,10 @@ export const KeyMap = ({ keyMapConfig }: KeyMapProps) => {
     
     return (
         <StyledUl>
-            {keyMapConfig.map((shortcut: ShortcutConfig) => {
+            {keyMapConfig.map((shortcut: ShortcutConfig, index) => {
 
                 return (
-                    <StyledListItem>
+                    <StyledListItem key={index}>
                         <StyledKeysDiv>{shortcut.keys.reduce((acc: string, current: string): string => `${acc} ${current}`, '')}</StyledKeysDiv>
                         <StyledDescDiv>{shortcut.description}</StyledDescDiv>
                     </StyledListItem>
