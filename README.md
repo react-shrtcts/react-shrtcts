@@ -1,6 +1,4 @@
 [![Contributors][contributors-shield]][contributors-url]
-<!-- [![Forks][forks-shield]][forks-url] -->
-<!-- [![Stargazers][stars-shield]][stars-url] -->
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
@@ -114,8 +112,7 @@ View the working demo @[react-shrtcts](https://react-shrtcts.github.io)
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Prevent default event only on Shrtct events  
-- [ ] WYSIWYG editor component
+View the [Roadmap](https://github.com/react-shrtcts/react-shrtcts/projects/1)
 
 See the [open issues](https://github.com/react-shrtcts/react-shrtcts/issues) for a list of proposed features (and known issues).
 

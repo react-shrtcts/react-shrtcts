@@ -15,8 +15,8 @@ describe('<KeyMap />', () => {
         expect(render(<KeyMap keyMapConfig={keymap} />)).toBeTruthy()
     })
     it('should display the current keybinds and descriptions stored in context', () => {
-        const { findByText } = render(<KeyMap keyMapConfig={keymap} />)
-        expect(findByText('ctrl j')).toBeInTheDocument()
-        expect(findByText('New Shortcut')).toBeInTheDocument()
+        const { getByText } = render(<KeyMap keyMapConfig={keymap} />)
+        expect(getByText('ctrl j')).toBeInTheDocument()
+        expect(getByText('New Shortcut')).toBeInTheDocument()
     })
 })
