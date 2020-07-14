@@ -1,6 +1,6 @@
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
@@ -42,6 +42,8 @@ npm i react-shrtcts
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+*NOTE:* This is very much still a W.I.P dont excpect miracles 
+
 We created this package because there simply was no other option out there (or atleast on page 1 of google). We have developed a convenient hook for devs to use that will connect different key combinations with a relevant function!
 
 The hook utilises its own context to ensure state is maintained and the dom isnt littered with events
@@ -67,26 +69,55 @@ This is an example of how to list things you need to use the software and how to
 
 ```typescript
 
+// YourApp.tsx
+
+<ShortcutProvider>
+  // ... Your Components
+</ShortcutProvider>
+
 // YourComponent.tsx
 
-useShortcuts({ 
+useShortcuts([{ 
     keys: ['ctrl', 's'],
     fn: (event: SpeshEvent) => {
         // do awesome stuff
     }
-})
+}])
 
 ```
 
+The `ShortcutConfig` object array passed to the `useShortcuts` hook is of the shape:
+```typescript
+interface ShortcutConfig {
+  /** 
+   * Simple array of string key values 
+   * When all keys are pressed in combination the `ShortcutFunction` will be run
+   */
+  keys: KeyMap 
+  /**
+   * The function to run when all keys are pressed
+   */
+  fn: ShortcutFunction
+  /**
+   * A short description on the keybinds function, this will be used to display to the user
+   */
+  description?: string 
+}
+```
+
+## Demo Application
+
 Check the `demo` directory for a working example.
+
+View the working demo @[react-shrtcts](https://react-shrtcts.github.io)
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- WYSIWYG editor component
+- [ ] Prevent default event only on Shrtct events  
+- [ ] WYSIWYG editor component
 
 See the [open issues](https://github.com/react-shrtcts/react-shrtcts/issues) for a list of proposed features (and known issues).
-
 
 
 <!-- CONTRIBUTING -->
@@ -109,9 +140,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/react-shrtcts/react-shrtcts](https://github.com/react-shrtcts/react-shrtcts)
 
 
 

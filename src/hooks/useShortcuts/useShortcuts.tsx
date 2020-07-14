@@ -6,7 +6,7 @@ import { logger } from '../../utils/logger'
 //@ts-ignore
 import chalk from 'chalk'
 
-export const useShortcuts = (config: ShortcutConfig[]) => {
+export const useShortcuts = (config?: ShortcutConfig[]) => {
     const [keyState, setKeyState] = useContext<[IShortcutContext[], React.Dispatch<React.SetStateAction<IShortcutContext[]>>]>(ShortcutContext)
 
     const keyListener = (bool: boolean) =>(event: KeyboardEvent) => {
@@ -20,7 +20,7 @@ export const useShortcuts = (config: ShortcutConfig[]) => {
         const keydownListener = keyListener(true)
         const keyupListener = keyListener(false)
 
-        config.forEach(({ keys, fn }) => {
+        config && config.forEach(({ keys, fn }) => {
             logger(chalk.blue('Started Config Parse!'))
             logger(chalk.yellow('Recieved Keys:'))
             logger(chalk.yellow(keys))
@@ -34,7 +34,7 @@ export const useShortcuts = (config: ShortcutConfig[]) => {
             logger(chalk.green('Applied Event Listeners to keys!'))
         })
         return () => {
-            config.forEach(({ keys, fn }) => {
+            config && config.forEach(({ keys, fn }) => {
                 logger(chalk.blue('Removing event listeners'))
                 // get keycode
                 const keycodes = keys.map(getKeycode)

@@ -18,9 +18,11 @@ describe('useShortcuts', () => {
             fireEvent.keyDown(document.body, { key: 'Control', code: 'ControlLeft' })
             fireEvent.keyDown(document.body, { key: 'j', code: 'KeyJ' })
         })
+        expect(spy).toHaveBeenCalled()
         expect(result.current.keyState[0]['ControlLeft']).toEqual(true)
         expect(result.current.keyState[0]['KeyJ']).toEqual(true)
-        expect(spy).toHaveBeenCalled()
+        // act(()=> {
+        // })
     })
     
     it('should accept multiple keys config objects and call the events', () => {
